@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.urdad.urdad-java</groupId>
+        <artifactId>jaxrs</artifactId>
+        <version>4.0.2-SNAPSHOT</version>
+    </parent>
+
+    <groupId>org.urdad.urdad-java.jaxrs</groupId>
+    <artifactId>jaxrs-jee-utilities</artifactId>
+    <packaging>ejb</packaging>
+
+    <name>JAX-RS - JEE - Utilities</name>
+
+    <dependencies>
+
+        <!-- URDAD - JAX-RS - Utilities -->
+        <dependency>
+            <groupId>org.urdad.urdad-java.jaxrs</groupId>
+            <artifactId>jaxrs-utilities</artifactId>
+        </dependency>
+
+        <!-- URDAD - Services - API -->
+        <dependency>
+            <groupId>org.urdad.urdad-java.services</groupId>
+            <artifactId>services-api</artifactId>
+        </dependency>
+
+        <!-- URDAD - XML - Binding - API -->
+        <dependency>
+            <groupId>org.urdad.urdad-java.xml.binding</groupId>
+            <artifactId>binding-api</artifactId>
+        </dependency>
+
+        <!-- URDAD - JSON - Binding - API -->
+        <dependency>
+            <groupId>org.urdad.urdad-java.json.binding</groupId>
+            <artifactId>binding-api</artifactId>
+        </dependency>
+
+        <!-- Java EE API -->
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+        </dependency>
+
+        <!-- Google Guava utilities -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+
+        <!-- Logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+
+        <!-- Jackson JSON Parser -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+
+        <!--<dependency>-->
+        <!--<groupId>com.fasterxml.jackson.module</groupId>-->
+        <!--<artifactId>jackson-module-jaxb-annotations</artifactId>-->
+        <!--</dependency>-->
+
+    </dependencies>
+
+    <build>
+        <plugins>
+
+            <!-- Maven EJB plugin. -->
+            <plugin>
+                <artifactId>maven-ejb-plugin</artifactId>
+                <version>${maven-ejb-plugin.version}</version>
+                <configuration>
+                    <ejbVersion>3.2</ejbVersion>
+                    <generateClient>true</generateClient>
+                    <filterDeploymentDescriptor>true</filterDeploymentDescriptor>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>

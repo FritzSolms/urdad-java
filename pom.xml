@@ -1,0 +1,616 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2019 Dr. Fritz Solms & Craig Edwards
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.urdad</groupId>
+    <artifactId>urdad-java</artifactId>
+    <version>4.0.2-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>URDAD Java Framework</name>
+
+    <description>URDAD Framework Super POM</description>
+
+    <modules>
+
+        <module>services</module>
+        <module>validation</module>
+        <module>xml</module>
+        <module>json</module>
+        <module>jpa</module>
+        <module>jaxrs</module>
+        <module>mongo</module>
+        <module>events</module>
+        <module>proxy</module>
+        <module>interceptors</module>
+        <module>binding</module>
+
+    </modules>
+
+    <scm>
+        <connection>scm:git:git@gitlab.com:solms/urdad-java.git</connection>
+        <developerConnection>scm:git:git@gitlab.com:solms/urdad-java.git</developerConnection>
+        <tag>HEAD</tag>
+        <url>https://gitlab.com/solms/urdad-java</url>
+    </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>urdad-nexus-repository-releases</id>
+            <name>URDAD Nexus Repository (Releases)</name>
+            <url>https://artifactrepository.urdad.net/repository/urdad-maven-releases</url>
+        </repository>
+
+        <snapshotRepository>
+            <id>urdad-nexus-repository-snapshots</id>
+            <name>URDAD Nexus Repository (Snapshots)</name>
+            <url>https://artifactrepository.urdad.net/repository/urdad-maven-snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <properties>
+
+        <!-- Eliminates the 'build is platform dependent!' warning. -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <!-- Maven compiler plugin -->
+        <maven.compiler.release>11</maven.compiler.release>
+
+        <!-- Versions -->
+        <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
+        <maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
+        <maven-jar-plugin.version>3.1.0</maven-jar-plugin.version>
+        <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
+        <maven-assembly-plugin.version>3.1.0</maven-assembly-plugin.version>
+        <maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>
+        <maven-jaxb2-plugin.version>0.14.0</maven-jaxb2-plugin.version>
+        <maven-ear-plugin.version>3.0.1</maven-ear-plugin.version>
+        <maven-ejb-plugin.version>3.0.1</maven-ejb-plugin.version>
+        <maven-war-plugin.version>3.2.2</maven-war-plugin.version>
+        <maven-plugin-plugin.version>3.6.0</maven-plugin-plugin.version>
+        <sortpom-maven-plugin.version>2.10.0</sortpom-maven-plugin.version>
+        <google.maven-replacer-plugin.version>1.5.3</google.maven-replacer-plugin.version>
+
+        <maven-core.version>3.6.0</maven-core.version>
+        <maven-plugin-api.version>3.6.0</maven-plugin-api.version>
+        <maven-plugin-annotations.version>3.6.0</maven-plugin-annotations.version>
+        <javax.el.version>3.0.0</javax.el.version>
+        <javax.inject.version>1</javax.inject.version>
+        <javax.annotation-api.version>1.2</javax.annotation-api.version>
+        <javaee-api.version>8.0</javaee-api.version>
+        <javax.servlet.api>4.0.1</javax.servlet.api>
+        <jaxb-api.version>2.3.1</jaxb-api.version>
+        <validation-api.version>2.0.1.Final</validation-api.version>
+        <google.guava.version>27.0.1-jre</google.guava.version>
+        <aspectj.version>1.9.2</aspectj.version>
+        <hibernate-validator.version>6.0.13.Final</hibernate-validator.version>
+        <hibernate-jpamodelgen.version>5.4.0.Final</hibernate-jpamodelgen.version>
+        <jackson.version>2.9.8</jackson.version>
+        <junit.version>4.12</junit.version>
+        <mongodb.version>3.9.1</mongodb.version>
+        <sl4j.version>1.7.25</sl4j.version>
+        <springframework.version>5.1.3.RELEASE</springframework.version>
+        <okhttp.version>3.12.0</okhttp.version>
+        <reflections.version>0.9.11</reflections.version>
+        <gradle-core.version>4.0</gradle-core.version>
+        <gradle-base-services.version>4.2</gradle-base-services.version>
+        <gradle-model-core.version>4.0</gradle-model-core.version>
+        <gradle-base-services-groovy.version>4.1</gradle-base-services-groovy.version>
+        <gradle-logging.version>4.3</gradle-logging.version>
+        <gradle-plugins.version>0.9-preview-3</gradle-plugins.version>
+        <groovy-all.version>2.4.10</groovy-all.version>
+
+    </properties>
+
+    <dependencyManagement>
+
+        <dependencies>
+
+            <!-- Maven Core -->
+            <dependency>
+                <groupId>org.apache.maven</groupId>
+                <artifactId>maven-core</artifactId>
+                <version>${maven-core.version}</version>
+            </dependency>
+
+            <!-- Maven Plugin Api -->
+            <dependency>
+                <groupId>org.apache.maven</groupId>
+                <artifactId>maven-plugin-api</artifactId>
+                <version>${maven-plugin-api.version}</version>
+            </dependency>
+
+            <!-- Maven Plugin Annotations -->
+            <dependency>
+                <groupId>org.apache.maven.plugin-tools</groupId>
+                <artifactId>maven-plugin-annotations</artifactId>
+                <version>${maven-plugin-annotations.version}</version>
+            </dependency>
+
+            <!-- Bean Validation - API (JSR-303/JSR-349) -->
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>${validation-api.version}</version>
+            </dependency>
+
+            <!-- Hibernate Bean Validation (Reference Implementation) -->
+            <dependency>
+                <groupId>org.hibernate.validator</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${hibernate-validator.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!--Dependency Injection for Java - Annotations (JSR 330) -->
+            <dependency>
+                <groupId>javax.inject</groupId>
+                <artifactId>javax.inject</artifactId>
+                <version>${javax.inject.version}</version>
+            </dependency>
+
+            <!-- Common Annotations for the Java -->
+            <dependency>
+                <groupId>javax.annotation</groupId>
+                <artifactId>javax.annotation-api</artifactId>
+                <version>${javax.annotation-api.version}</version>
+            </dependency>
+
+            <!-- JAXB API -->
+            <dependency>
+                <groupId>javax.xml.bind</groupId>
+                <artifactId>jaxb-api</artifactId>
+                <version>${jaxb-api.version}</version>
+            </dependency>
+
+            <!-- Java EE API -->
+            <dependency>
+                <groupId>javax</groupId>
+                <artifactId>javaee-api</artifactId>
+                <version>${javaee-api.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <!-- Javax Servlet API -->
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${javax.servlet.api}</version>
+            </dependency>
+
+            <!-- Java Expression Language -->
+            <dependency>
+                <groupId>javax.el</groupId>
+                <artifactId>javax.el-api</artifactId>
+                <version>${javax.el.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish</groupId>
+                <artifactId>javax.el</artifactId>
+                <version>${javax.el.version}</version>
+            </dependency>
+
+            <!--Unit testing API -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!-- Logging -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${sl4j.version}</version>
+            </dependency>
+
+            <!-- Google Guava utilities -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${google.guava.version}</version>
+            </dependency>
+
+            <!-- AspectJ -->
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjrt</artifactId>
+                <version>${aspectj.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjtools</artifactId>
+                <version>${aspectj.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>${aspectj.version}</version>
+            </dependency>
+
+            <!-- Spring Framework -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${springframework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${springframework.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+                <version>${springframework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jms</artifactId>
+                <version>${springframework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${springframework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${springframework.version}</version>
+            </dependency>
+
+            <!-- Hibernate JPA Metamodel Generator -->
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-jpamodelgen</artifactId>
+                <version>${hibernate-jpamodelgen.version}</version>
+            </dependency>
+
+            <!-- Jackson JSON Parser -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.module</groupId>
+                <artifactId>jackson-module-jaxb-annotations</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+
+            <!-- MongoDB -->
+            <dependency>
+                <groupId>org.mongodb</groupId>
+                <artifactId>mongodb-driver</artifactId>
+                <version>${mongodb.version}</version>
+            </dependency>
+
+            <!-- OkHttp HTTP Client -->
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>${okhttp.version}</version>
+            </dependency>
+
+            <!-- Reflections -->
+            <dependency>
+                <groupId>org.reflections</groupId>
+                <artifactId>reflections</artifactId>
+                <version>${reflections.version}</version>
+            </dependency>
+
+            <!-- Gradle -->
+            <dependency>
+                <groupId>org.gradle</groupId>
+                <artifactId>gradle-core</artifactId>
+                <version>${gradle-core.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.gradle</groupId>
+                <artifactId>gradle-base-services</artifactId>
+                <version>${gradle-base-services.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.gradle</groupId>
+                <artifactId>gradle-model-core</artifactId>
+                <version>${gradle-model-core.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.gradle</groupId>
+                <artifactId>gradle-base-services-groovy</artifactId>
+                <version>${gradle-base-services-groovy.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.gradle</groupId>
+                <artifactId>gradle-logging</artifactId>
+                <version>${gradle-logging.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.gradle</groupId>
+                <artifactId>gradle-plugins</artifactId>
+                <version>${gradle-plugins.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <!-- Groovy -->
+            <dependency>
+                <groupId>org.codehaus.groovy</groupId>
+                <artifactId>groovy-all</artifactId>
+                <version>${groovy-all.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+        </dependencies>
+
+    </dependencyManagement>
+
+    <repositories>
+
+        <repository>
+            <id>Spring Source Libs</id>
+            <url>http://repo.springsource.org/libs-release-remote/</url>
+        </repository>
+
+    </repositories>
+
+    <build>
+
+        <pluginManagement>
+
+            <plugins>
+
+                <!-- Java compilation -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                    <configuration>
+                        <release>${maven.compiler.release}</release>
+                        <compilerArgs>
+                            <arg>-parameters</arg>
+                        </compilerArgs>
+                        <fork>true</fork>
+                        <maxmem>1024m</maxmem>
+                    </configuration>
+                </plugin>
+
+                <!-- Dependency-related utilities -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>${maven-dependency-plugin.version}</version>
+                </plugin>
+
+                <!-- JAR creation -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${maven-jar-plugin.version}</version>
+                    <configuration>
+                        <finalName>${project.groupId}-${project.artifactId}-${project.version}</finalName>
+                    </configuration>
+                </plugin>
+
+                <!-- Release management -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>${maven-release-plugin.version}</version>
+                </plugin>
+
+                <!-- Assembly -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>${maven-assembly-plugin}</version>
+                </plugin>
+
+                <!-- Javadoc -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${maven-javadoc-plugin.version}</version>
+                </plugin>
+
+                <!-- Plugins -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-plugin-plugin</artifactId>
+                    <version>3.6.0</version>
+                </plugin>
+
+                <!-- JAXB 2 -->
+                <plugin>
+                    <groupId>org.jvnet.jaxb2.maven2</groupId>
+                    <artifactId>maven-jaxb2-plugin</artifactId>
+                    <version>${maven-jaxb2-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>generate</goal>
+                            </goals>
+                            <configuration>
+                                <forceRegenerate>false</forceRegenerate>
+                                <packageLevelAnnotations>false</packageLevelAnnotations>
+                                <markGenerated>true</markGenerated>
+                                <schemas>
+                                    <schema>
+                                        <fileset>
+                                            <directory>${basedir}/src/main/xsd</directory>
+                                            <includes>
+                                                <include>*.xsd</include>
+                                            </includes>
+                                            <excludes>
+                                                <exclude>*.xs</exclude>
+                                            </excludes>
+                                        </fileset>
+                                    </schema>
+                                </schemas>
+                                <args>
+                                    <arg>-XJsr303Annotations</arg>
+                                    <arg>-Xannotate</arg>
+                                    <arg>-Xinheritance</arg>
+                                </args>
+                                <plugins>
+                                    <plugin>
+                                        <groupId>com.github.krasa</groupId>
+                                        <artifactId>krasa-jaxb-tools</artifactId>
+                                        <version>1.3</version>
+                                    </plugin>
+                                    <plugin>
+                                        <groupId>org.jvnet.jaxb2_commons</groupId>
+                                        <artifactId>jaxb2-basics</artifactId>
+                                        <version>0.10.0</version>
+                                    </plugin>
+                                    <plugin>
+                                        <groupId>org.jvnet.jaxb2_commons</groupId>
+                                        <artifactId>jaxb2-basics-annotate</artifactId>
+                                        <version>1.0.2</version>
+                                    </plugin>
+                                </plugins>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <!-- Sort POM -->
+                <plugin>
+                    <groupId>com.github.ekryd.sortpom</groupId>
+                    <artifactId>sortpom-maven-plugin</artifactId>
+                    <version>${sortpom-maven-plugin.version}</version>
+                    <configuration>
+                        <predefinedSortOrder>recommended_2008_06</predefinedSortOrder>
+                        <lineSeparator>\n</lineSeparator>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                        <sortProperties>false</sortProperties>
+                        <keepBlankLines>true</keepBlankLines>
+                        <nrOfIndentSpace>4</nrOfIndentSpace>
+                        <!--<sortDependencies>scope</sortDependencies>-->
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>sort</goal>
+                            </goals>
+                            <phase>verify</phase>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <!-- String token replacement -->
+                <plugin>
+                    <groupId>com.google.code.maven-replacer-plugin</groupId>
+                    <artifactId>replacer</artifactId>
+                    <version>${google.maven-replacer-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>replace</goal>
+                            </goals>
+                            <phase>prepare-package</phase>
+                        </execution>
+                    </executions>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+
+            <!-- Java compilation -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+
+            <!-- Dependency-related utilities -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+            </plugin>
+
+            <!-- JAR creation -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+            </plugin>
+
+            <!-- Plugins -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-plugin-plugin</artifactId>
+            </plugin>
+
+            <!-- Sort POM -->
+            <plugin>
+                <groupId>com.github.ekryd.sortpom</groupId>
+                <artifactId>sortpom-maven-plugin</artifactId>
+            </plugin>
+
+        </plugins>
+
+    </build>
+
+    <profiles>
+
+        <!-- Disable integration testing by default. -->
+        <profile>
+            <id>integration-test</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <configuration>
+                            <forkMode>once</forkMode>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                </plugins>
+            </build>
+        </profile>
+
+    </profiles>
+
+</project>

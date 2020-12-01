@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.urdad</groupId>
+        <artifactId>urdad-java</artifactId>
+        <version>4.0.2-SNAPSHOT</version>
+    </parent>
+
+    <groupId>org.urdad.urdad-java</groupId>
+    <artifactId>jaxrs</artifactId>
+    <packaging>pom</packaging>
+
+    <name>JAX-RS</name>
+
+    <modules>
+        <module>jaxrs-utilities</module>
+        <module>jaxrs-jee-utilities</module>
+        <module>jaxrs-spring-utilities</module>
+        <module>jaxrs-jee-websocket</module>
+    </modules>
+
+    <dependencyManagement>
+
+        <dependencies>
+
+            <!-- URDAD - JAX-RS - Utilities -->
+            <dependency>
+                <groupId>org.urdad.urdad-java.jaxrs</groupId>
+                <artifactId>jaxrs-utilities</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- URDAD - Services - API -->
+            <dependency>
+                <groupId>org.urdad.urdad-java.services</groupId>
+                <artifactId>services-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- URDAD - XML - Binding - API -->
+            <dependency>
+                <groupId>org.urdad.urdad-java.xml.binding</groupId>
+                <artifactId>binding-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- URDAD - JSON - Binding - API -->
+            <dependency>
+                <groupId>org.urdad.urdad-java.json.binding</groupId>
+                <artifactId>binding-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+        </dependencies>
+
+    </dependencyManagement>
+
+</project>
